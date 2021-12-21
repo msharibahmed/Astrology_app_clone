@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:india_today_assignment/utils/constants.dart';
+import 'package:india_today_assignment/widgets/sort_astrologers.dart';
+import 'package:india_today_assignment/widgets/sort_chip.dart';
 import 'package:provider/provider.dart';
 //
 import 'package:india_today_assignment/providers/astrolger_provider.dart';
@@ -8,37 +11,15 @@ import 'package:india_today_assignment/widgets/astrologer_search_field.dart';
 class AstrologersScreen extends StatelessWidget {
   const AstrologersScreen({Key? key}) : super(key: key);
 
-  Widget iconWidget(String name, double size, double padding) => Padding(
-        padding: EdgeInsets.all(padding),
-        child: Image.asset(
-          'assets/icons/$name.png',
-          height: size,
-          width: size,
-        ),
-      );
-
   @override
   Widget build(BuildContext context) {
-    print('Test 1111111111111');
-
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 0,
-        leading: iconWidget('hamburger', 55, 0),
-        title: iconWidget('logo', 60, 0),
-        centerTitle: true,
-        actions: [
-          Padding(
-            padding: const EdgeInsets.only(right: 16.0),
-            child: iconWidget('profile', 30, 0),
-          )
-        ],
-      ),
+      appBar: appBarWidget(),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -54,9 +35,10 @@ class AstrologersScreen extends StatelessWidget {
                           Provider.of<AstrologerProv>(context, listen: false)
                               .toggleShowSearchBar();
                         },
-                        child: iconWidget('search', 25, 8)),
-                    InkWell(onTap: () {}, child: iconWidget('filter', 25, 8)),
-                    InkWell(onTap: () {}, child: iconWidget('sort', 25, 8)),
+                        child: iconWidget(SEARCH_ICON, 25, 8)),
+                    InkWell(
+                        onTap: () {}, child: iconWidget(FILTER_ICON, 25, 8)),
+                    const SortAstrologers(),
                   ],
                 )
               ],
@@ -66,7 +48,11 @@ class AstrologersScreen extends StatelessWidget {
                     ? const AstrologerSearchField()
                     : Container()),
             const SizedBox(
-              height: 10,
+              height: 8,
+            ),
+            const SortChip(),
+            const SizedBox(
+              height: 7,
             ),
             const AstrologerList()
           ],
