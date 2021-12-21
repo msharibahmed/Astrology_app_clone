@@ -25,15 +25,21 @@ class _AstrologerSearchFieldState extends State<AstrologerSearchField> {
         child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 50.0),
             child: TextFormField(
-              controller: _astroSeacrhCtrl,
+                controller: _astroSeacrhCtrl,
                 decoration: InputDecoration(
                     icon: const Icon(Icons.keyboard),
                     hintText: 'Search Astrolger, name, skills, experience etc.',
                     suffixIcon: IconButton(
                         onPressed: () {
+                          final _prov = Provider.of<AstrologerProv>(context,
+                              listen: false);
+
+                          if (_astroSeacrhCtrl.text.trim() != '') {
+                            _prov.clearTextField();
+                          } else {
+                            _prov.toggleShowSearchBar();
+                          }
                           _astroSeacrhCtrl.clear();
-                          Provider.of<AstrologerProv>(context, listen: false)
-                              .clearTextField();
                         },
                         icon: const Icon(
                           Icons.clear_rounded,
