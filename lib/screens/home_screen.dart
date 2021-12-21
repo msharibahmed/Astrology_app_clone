@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:india_today_assignment/utils/constants.dart';
 
 import 'astrologers_screen.dart';
 import 'panchang_screen.dart';
@@ -12,7 +13,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int _currentIndex = 0;
-  List<StatelessWidget> screens = const [PanchangScreen(), AstrologersScreen()];
+  List<Widget> screens = const [PanchangScreen(), AstrologersScreen()];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,9 +27,9 @@ class _HomeScreenState extends State<HomeScreen> {
           },
           items: const [
             BottomNavigationBarItem(
-                icon: Icon(Icons.home_outlined), label: 'Home'),
+                icon: Icon(Icons.calendar_today_rounded), label: 'Daily Panchang'),
             BottomNavigationBarItem(
-                icon: Icon(Icons.chat_bubble_outline_sharp),
+                icon: ImageIcon(AssetImage(TALK_ICON)),
                 label: 'Talk to Astrologer'),
           ]),
       body: screens[_currentIndex],
