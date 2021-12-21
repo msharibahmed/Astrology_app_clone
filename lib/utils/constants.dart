@@ -9,6 +9,7 @@ const String FILTER_ICON = 'assets/icons/filter.png';
 const String SORT_ICON = 'assets/icons/sort.png';
 const String HAMBURGER_ICON = 'assets/icons/hamburger.png';
 const String PROFILE_ICON = 'assets/icons/profile.png';
+const String TALK_ICON = 'assets/icons/talk.png';
 
 enum SortNames {
   All,
