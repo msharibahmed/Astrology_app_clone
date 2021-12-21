@@ -1,17 +1,83 @@
 import 'dart:convert';
 import 'dart:io';
-import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:india_today_assignment/model/astrologer_model.dart';
+import 'package:india_today_assignment/utils/constants.dart';
 
 class AstrologerProv with ChangeNotifier {
   bool _showSearchBar = false;
+
   bool get showSearchBar => _showSearchBar;
 
   void toggleShowSearchBar() {
     _showSearchBar = !_showSearchBar;
+    notifyListeners();
+  }
+
+  SortNames _sortNamesTag = SortNames.All;
+  SortNames get sortNamesTag => _sortNamesTag;
+  void sortBySelection(SortNames selectedName) {
+    _sortNamesTag = selectedName;
+    switch (selectedName) {
+      case SortNames.Increasing_Exp:
+        _sortbyExpIncreasing();
+        break;
+      case SortNames.Decreasing_Exp:
+        _sortbyExpDecreasing();
+        break;
+      case SortNames.Increasing_price:
+        _sortbyPriceIncreasing();
+        break;
+      case SortNames.Decreasing_price:
+        _sortbyPriceDecreasing();
+        break;
+      case SortNames.All:
+        _clearSorting();
+        break;
+
+      default:
+    }
+
+    notifyListeners();
+  }
+
+  void _sortbyExpIncreasing() {
+    List<AstrologerModel> _tempList = [..._astrologersList];
+    _tempList.sort((a, b) => a.experience.compareTo(b.experience));
+
+    _searchAstrolgerList = _tempList;
+
+    notifyListeners();
+  }
+
+  void _sortbyExpDecreasing() {
+    List<AstrologerModel> _tempList = [..._astrologersList];
+    _tempList.sort((a, b) => b.experience.compareTo(a.experience));
+    _searchAstrolgerList = _tempList;
+    notifyListeners();
+  }
+
+  void _sortbyPriceIncreasing() {
+    List<AstrologerModel> _tempList = [..._astrologersList];
+    _tempList.sort((a, b) =>
+        a.additionalPerMinuteCharges.compareTo(b.additionalPerMinuteCharges));
+    _searchAstrolgerList = _tempList;
+    notifyListeners();
+  }
+
+  void _sortbyPriceDecreasing() {
+    List<AstrologerModel> _tempList = [..._astrologersList];
+    _tempList.sort((a, b) =>
+        b.additionalPerMinuteCharges.compareTo(a.additionalPerMinuteCharges));
+    _searchAstrolgerList = _tempList;
+    notifyListeners();
+  }
+
+  void _clearSorting() {
+    List<AstrologerModel> _tempList = _astrologersList;
+    _searchAstrolgerList = _tempList;
     notifyListeners();
   }
 
@@ -67,6 +133,7 @@ class AstrologerProv with ChangeNotifier {
         String lang = e.languages.map((e) => e.name).toList().join('');
         String skill = e.skills.map((e) => e.name).toList().join('');
         String x = e.firstName +
+            ' ' +
             e.lastName +
             e.experience.toInt().toString() +
             lang +
@@ -86,4 +153,8 @@ class AstrologerProv with ChangeNotifier {
     _searchAstrolgerList = _astrologersList;
     notifyListeners();
   }
+
+  /////
+  ///
+
 }
