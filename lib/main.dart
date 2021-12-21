@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
         builder: (context, child) => MaterialApp(
               debugShowCheckedModeBanner: false,
               theme: ThemeData(
-                textTheme: GoogleFonts.openSansTextTheme(
+                textTheme: GoogleFonts.latoTextTheme(
                   Theme.of(context).textTheme,
                 ),
                 primarySwatch: Colors.orange,
