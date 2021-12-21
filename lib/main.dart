@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:india_today_assignment/providers/astrolger_provider.dart';
-import 'package:india_today_assignment/screens/home_screen.dart';
 import 'package:india_today_assignment/utils/theme.dart';
 import 'package:provider/provider.dart';
+
+import 'screens/splash_screen.dart';
 
 void main() {
   statusBarTheme();
@@ -29,7 +30,7 @@ class MyApp extends StatelessWidget {
                 ),
                 primarySwatch: Colors.orange,
               ),
-              home: const HomeScreen(),
+              home: const SplashScreen(),
             ));
   }
 }
