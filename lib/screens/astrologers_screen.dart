@@ -1,5 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:india_today_assignment/utils/constants.dart';
+import 'package:india_today_assignment/widgets/filter_astrologer.dart';
 import 'package:india_today_assignment/widgets/sort_astrologers.dart';
 import 'package:india_today_assignment/widgets/sort_chip.dart';
 import 'package:provider/provider.dart';
@@ -37,7 +39,16 @@ class AstrologersScreen extends StatelessWidget {
                         },
                         child: iconWidget(SEARCH_ICON, 25, 8)),
                     InkWell(
-                        onTap: () {}, child: iconWidget(FILTER_ICON, 25, 8)),
+                        onTap: () {
+                          showModalBottomSheet(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10.0),
+                              ),
+                              backgroundColor: Colors.white,
+                              context: context,
+                              builder: (context) => const FilterAstrologer());
+                        },
+                        child: iconWidget(FILTER_ICON, 25, 8)),
                     const SortAstrologers(),
                   ],
                 )
