@@ -13,7 +13,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int _currentIndex = 0;
-  List<Widget> screens = const [PanchangScreen(), AstrologersScreen()];
+  List<Widget> screens =const [PanchangScreen(),  AstrologersScreen()];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,7 +27,8 @@ class _HomeScreenState extends State<HomeScreen> {
           },
           items: const [
             BottomNavigationBarItem(
-                icon: Icon(Icons.calendar_today_rounded), label: 'Daily Panchang'),
+                icon: Icon(Icons.calendar_today_rounded),
+                label: 'Daily Panchang'),
             BottomNavigationBarItem(
                 icon: ImageIcon(AssetImage(TALK_ICON)),
                 label: 'Talk to Astrologer'),
