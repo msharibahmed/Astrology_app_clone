@@ -56,7 +56,7 @@ class SortAstrologers extends StatelessWidget {
                   child: const SortItem(
                     value: SortNames.Increasing_price,
                     itemNumber: 3,
-                    text: 'Experience: High to Low',
+                    text: 'Price: Low to High',
                   ),
                   value: 3),
               PopupMenuItem(

@@ -19,7 +19,7 @@ class SortChip extends StatelessWidget {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         Text(
-                          data.sortNamesTag.name,
+                          returnChipName(data.sortNamesTag),
                           style: const TextStyle(
                               color: Colors.orange,
                               fontWeight: FontWeight.w400,
