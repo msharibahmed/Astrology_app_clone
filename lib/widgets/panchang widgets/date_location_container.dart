@@ -61,7 +61,6 @@ class _PanchangLocationWidgetState extends State<PanchangLocationWidget> {
           ),
           child: Consumer<PanchangProv>(builder: (context, data, _) {
             data.saveContext(context);
-            print('ssss');
             return TextFormField(
               controller: data.ctrl,
               onChanged: (input) async {
@@ -70,7 +69,7 @@ class _PanchangLocationWidgetState extends State<PanchangLocationWidget> {
                 }
               },
               decoration: InputDecoration(
-                contentPadding: const EdgeInsets.symmetric(horizontal: 5),
+                contentPadding: const EdgeInsets.symmetric(horizontal: 10),
                 border: InputBorder.none,
                 hintText: data.choosenLocation,
               ),
