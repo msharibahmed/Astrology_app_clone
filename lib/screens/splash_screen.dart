@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:india_today_assignment/providers/astrolger_provider.dart';
+import 'package:india_today_assignment/providers/panchang_provider.dart';
 import 'package:india_today_assignment/screens/home_screen.dart';
 import 'package:provider/provider.dart';
 
@@ -10,7 +11,6 @@ class SplashScreen extends StatefulWidget {
   State<SplashScreen> createState() => _SplashScreenState();
 }
 
-/// AnimationControllers can be created with `vsync: this` because of TickerProviderStateMixin.
 class _SplashScreenState extends State<SplashScreen>
     with TickerProviderStateMixin {
   late final AnimationController _controller = AnimationController(
@@ -26,14 +26,12 @@ class _SplashScreenState extends State<SplashScreen>
   void initState() {
     super.initState();
 
-    Provider.of<AstrologerProv>(context, listen: false)
-        .getAllAstrologers()
-        .then((_) {
-      Future.delayed(const Duration(seconds: 1), () {
-        Navigator.pushReplacement(context,
-            MaterialPageRoute(builder: (context) => const HomeScreen()));
-      });
-    });
+    final _astroProv = Provider.of<AstrologerProv>(context, listen: false);
+    final _panchProv = Provider.of<PanchangProv>(context, listen: false);
+
+    _astroProv.getAllAstrologers().then((_) => _panchProv.fetchPanchang()).then(
+        (_) => Navigator.pushReplacement(context,
+            MaterialPageRoute(builder: (context) => const HomeScreen())));
   }
 
   @override
