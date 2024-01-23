@@ -1,4 +1,4 @@
-# india_today_assignment
+# Astrology app 
 
 A new Flutter project.
 
